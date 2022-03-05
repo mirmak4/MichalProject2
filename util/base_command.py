@@ -1,5 +1,7 @@
 from selenium import webdriver
+# from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -10,7 +12,8 @@ class BaseCommand:
         self.wait : WebDriverWait = WebDriverWait(driver, 3)
 
     def click_element(self, element):
-        self.local_driver.find_element(By.XPATH, element).click()
+        found: WebElement = self.local_driver.find_element(By.XPATH, element)
+        found.click()
 
     def clear_element(self, element):
         self.local_driver.find_element(By.XPATH, element).clear()
